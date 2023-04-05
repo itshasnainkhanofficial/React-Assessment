@@ -38,3 +38,13 @@ Add state to our context and pass it through the Provider
 2. Pass the array of all photos through the value of the provider so it's available
 
 anywhere the app accesses the context
+
+# Module 4
+Get the JSON data with the photos information from the API and save it to context
+State.
+
+1. As soon as the Context Provider component renders, get the JSON data from this
+
+url:
+hitps://raw.githubusercontent.com/bobziroll/scrimba-reactbootcampimages/master/imag
+es.json
