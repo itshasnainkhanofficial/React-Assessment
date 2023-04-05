@@ -4,7 +4,7 @@ import "./App.css";
 import Router from "./components/Router";
 import { ContextProvider } from "./state/Context";
 import { useEffect, useState } from "react";
-import getData from './service/fetchphotos'
+import getData from './service/photosService'
 
 
 function App() {
