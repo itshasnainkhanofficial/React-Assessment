@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import {RiAddCircleLine} from 'react-icons/ri'
+import {RiHeartLine} from 'react-icons/ri'
+
 
 const Image = ({ImgUrl}) => {
     
@@ -12,11 +15,14 @@ const Image = ({ImgUrl}) => {
         setHovered(false)
     }
 
-    console.log(hovered)
+    // console.log(hovered)
 
   return (
     <div>
         <div>
+            {hovered ?  <RiHeartLine className='favorite'/> : <RiAddCircleLine className='cart'/>}
+            
+            
             <img src={ImgUrl} onMouseEnter={onMouseEnterHandler}  onMouseLeave={onMouseLeaveHandler}/>
         </div>
     </div>
