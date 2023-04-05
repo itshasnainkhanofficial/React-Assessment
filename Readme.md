@@ -46,5 +46,8 @@ State.
 1. As soon as the Context Provider component renders, get the JSON data from this
 
 url:
-hitps://raw.githubusercontent.com/bobziroll/scrimba-reactbootcampimages/master/imag
-es.json
+https://raw.githubusercontent.com/bobziroll/scrimba-reactbootcampimages/master/images.json
+
+2. Save the array of data that comes back to state. Review data fetching in React
+
+using “fetch:
