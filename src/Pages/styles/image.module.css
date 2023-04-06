@@ -4,7 +4,18 @@
 
 .container svg {
   transform: scale(2.5);
+}
+
+.container div {
   position: absolute;
+}
+
+.container div:nth-child(1) {
   left: 30px;
+  top: 30px;
+}
+
+.container div:nth-child(2) {
+  right: 30px;
   top: 30px;
 }

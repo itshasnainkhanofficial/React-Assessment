@@ -1,6 +1,5 @@
 // global css
-import './styles/reset.css'
-
+import "./styles/reset.css";
 
 import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
@@ -8,73 +7,64 @@ import "./App.css";
 import Router from "./components/Router";
 import { ContextProvider } from "./state/Context";
 import { useEffect, useState } from "react";
-import getData from './service/photosService'
-
+import getData from "./service/photosService";
 
 function App() {
   const [allPhotos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
- 
+  let cartltems = [];
+
   const toggleFavorite = (SelectedImgId) => {
 
-    console.log(allPhotos, "when photo was not clicked")
-
-    const updatedPhotos = allPhotos.map(photo => {
-
+    // toggle fovorite login
+    console.log(allPhotos, "when photo was not clicked");
+    const updatedPhotos = allPhotos.map((photo) => {
       if (photo.id === SelectedImgId) {
-
         const updatedPhoto = {
           ...photo,
-          isFavorite: !photo.isFavorite
+          isFavorite: !photo.isFavorite,
         };
 
         return updatedPhoto;
-        
       } else {
-        return photo
+        return photo;
       }
-    })
+    });
 
-    
-    setPhotos(updatedPhotos)
-    console.log(updatedPhotos, "updated photos")
-    console.log(`Toggled favorite for photo with id ${SelectedImgId}`)
-  }
-  
+    setPhotos(updatedPhotos);
+    console.log(updatedPhotos, "updated photos");
+    console.log(`Toggled favorite for photo with id ${SelectedImgId}`);
+  };
 
+
+  // getting all posts from API
   const getAllPhotos = async () => {
-    
     try {
- 
-      const photosData = await getData("https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json")
+      const photosData = await getData(
+        "https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json"
+      );
 
       setPhotos(photosData);
       setError(null);
-
     } catch (err) {
-
       setError(err.message);
       setPhotos(null);
-
     } finally {
-
       setIsLoading(false);
-
     }
   };
 
   useEffect(() => {
-
     getAllPhotos();
-
   }, []);
 
   return (
     <>
       <BrowserRouter>
-        <ContextProvider value={{allPhotos, error, isLoading, toggleFavorite}}>
+        <ContextProvider
+          value={{ allPhotos, error, isLoading, toggleFavorite, cartltems }}
+        >
           <Header />
           <Router />
         </ContextProvider>

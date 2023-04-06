@@ -1,47 +1,66 @@
-import React, { useContext, useState } from 'react'
-import {RiAddCircleLine, RiHeartFill, RiHeartLine} from 'react-icons/ri'
-import styles from './styles/image.module.css'
-import { Context } from '../state/Context'
-import PropTypes from 'prop-types'
+import React, { useContext, useState } from "react";
+import {
+  RiAddCircleLine,
+  RiHeartFill,
+  RiHeartLine,
+  RiShoppingCartFill,
+} from "react-icons/ri";
+import styles from "./styles/image.module.css";
+import { Context } from "../state/Context";
+import PropTypes from "prop-types";
 
-const Image = ({ className, ImgData}) => {
-    
-    const [hovered, setHovered] = useState(false)
+const Image = ({ className, ImgData }) => {
+  const [hovered, setHovered] = useState(false);
 
-    const { toggleFavorite } = useContext(Context);
+  const { toggleFavorite } = useContext(Context);
 
-    const onMouseEnterHandler = () => {
-        if(!ImgData.isFavorite){
+  const { setCartltems, cartltems } = useContext(Context);
 
-            setHovered(true)
-        }
+  const onMouseEnterHandler = () => {
+    if (!ImgData.isFavorite) {
+      setHovered(true);
     }
+  };
 
-    const onMouseLeaveHandler = () => {
-        setHovered(false)
-    }
+  const onMouseLeaveHandler = () => {
+    setHovered(false);
+  };
 
-    // console.log(hovered)
+  const clickHandler = (data) => {
+    cartltems.push(data);
+
+    console.log(cartltems);
+  };
 
   return (
+    <div
+      className={styles.container}
+      onMouseEnter={onMouseEnterHandler}
+      onMouseLeave={onMouseLeaveHandler}
+    >
+      <div onClick={() => toggleFavorite(ImgData.id)}>
+        {ImgData.isFavorite ? ( <RiHeartFill /> ) : (<RiHeartLine /> )}
+      </div>
 
-        <div className={styles.container}>
-            {hovered ?  <RiHeartLine className='favorite' /> : (ImgData.isFavorite ? <RiHeartFill className='favorite' onClick={ () => toggleFavorite(ImgData.id)}/> : <RiAddCircleLine className='cart' onClick={ () => toggleFavorite(ImgData.id)}/> )}
-         
-            <img src={ImgData.url} onMouseEnter={onMouseEnterHandler}  onMouseLeave={onMouseLeaveHandler}/>
-        </div>
+      <div>
+        {hovered ? (
+          <RiAddCircleLine onClick={() => clickHandler(ImgData)} />
+        ) : null}
+      </div>
 
-  )
-}
+      <img src={ImgData.url} />
+    </div>
+  );
+};
 
 Image.propTypes = {
-    className: PropTypes.string,
+  className: PropTypes.string,
 
-    ImgData: PropTypes.shape({
-        id: PropTypes.string,
-        url: PropTypes.string,
-        isFavorite: PropTypes.bool
-      }),
-}
+  ImgData: PropTypes.shape({
+    id: PropTypes.string,
+    url: PropTypes.string,
+    isFavorite: PropTypes.bool,
+  }),
+};
 
-export default Image
+export default Image;
