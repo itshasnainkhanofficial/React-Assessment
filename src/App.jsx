@@ -1,4 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// global css
+import './styles/reset.css'
+
+
+import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import "./App.css";
 import Router from "./components/Router";
@@ -8,11 +12,11 @@ import getData from './service/photosService'
 
 
 function App() {
-  const [photos, setPhotos] = useState([]);
+  const [allPhotos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  const allPhotos = async () => {
+  const getAllPhotos = async () => {
     
     try {
  
@@ -35,14 +39,14 @@ function App() {
 
   useEffect(() => {
 
-    allPhotos();
+    getAllPhotos();
 
   }, []);
 
   return (
     <>
       <BrowserRouter>
-        <ContextProvider value={{photos, error, isLoading}}>
+        <ContextProvider value={{allPhotos, error, isLoading}}>
           <Header />
           <Router />
         </ContextProvider>

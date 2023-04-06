@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {RiAddCircleLine} from 'react-icons/ri'
 import {RiHeartLine} from 'react-icons/ri'
-
+import styles from './styles/image.module.css'
 
 const Image = ({ImgUrl}) => {
     
@@ -18,14 +18,14 @@ const Image = ({ImgUrl}) => {
     // console.log(hovered)
 
   return (
-    <div>
-        <div>
+
+        <div className={styles.container}>
             {hovered ?  <RiHeartLine className='favorite'/> : <RiAddCircleLine className='cart'/>}
             
             
             <img src={ImgUrl} onMouseEnter={onMouseEnterHandler}  onMouseLeave={onMouseLeaveHandler}/>
         </div>
-    </div>
+
   )
 }
 
