@@ -1,7 +1,10 @@
 .container {
-    display: flex;
+  position: relative;
 }
 
-.container svg{
-    transform: scale(2.5)
+.container svg {
+  transform: scale(2.5);
+  position: absolute;
+  left: 30px;
+  top: 30px;
 }

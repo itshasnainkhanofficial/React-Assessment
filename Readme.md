@@ -98,3 +98,23 @@ b. Don't try to modify the individual image object only. Make sure to provide a 
 new array to context with the one item with the matching “id” being changed.
 
 2. Make it so clicking the heart icon on any given image runs this method
+
+
+# Module 8
+
+Make the image display the filled heart icon when it's already favorited
+
+Logic to follow:
+
+- If the image is favorited, display the filled heart icon always
+
+- Otherwise, if the image being hovered on, display the heart outline instead * If
+
+it isn't favorited OR hovered on, don't display anything
+
+Remember to make it so clicking the filled heart icon ALSO runs the toggleFavorite
+function!
+
+Filled heart icon:
+
+<j className="ri-heart-fill favorite"></i>

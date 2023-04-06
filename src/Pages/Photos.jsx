@@ -15,9 +15,9 @@ const Photos = () => {
         )}
         <ul className={styles.container}>
           {allPhotos &&
-            allPhotos.map(({ id, url }) => (
-              <li key={id} >
-                <Image ImgUrl={url} ImgId={id}/>
+            allPhotos.map(({ id, url, isFavorite }) => (
+              <li key={id}>
+                <Image ImgUrl={url} ImgId={id} isFavorite={isFavorite}/>
               </li>
             ))}
         </ul>
