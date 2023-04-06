@@ -3,7 +3,22 @@
     flex-wrap: wrap;
 }
 
+.heading{
+    margin: 2rem 0rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
 .container img{
     height: 200px;
-    padding: 1rem;
+    margin: 1rem;
+}
+
+.errorstyle{
+    color: red;
+    text-align: center;
+}
+
+.mainContainer{
+    padding: 0px 5rem;
 }

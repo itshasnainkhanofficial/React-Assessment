@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {RiAddCircleLine} from 'react-icons/ri'
 import {RiHeartLine} from 'react-icons/ri'
 import styles from './styles/image.module.css'
+import { Context } from '../state/Context'
 
-const Image = ({ImgUrl}) => {
+const Image = ({ImgUrl, ImgId}) => {
     
     const [hovered, setHovered] = useState(false)
+
+    const { toggleFavorite } = useContext(Context);
 
     const onMouseEnterHandler = () => {
         setHovered(true)
@@ -20,7 +23,7 @@ const Image = ({ImgUrl}) => {
   return (
 
         <div className={styles.container}>
-            {hovered ?  <RiHeartLine className='favorite'/> : <RiAddCircleLine className='cart'/>}
+            {hovered ?  <RiAddCircleLine className='cart' /> : <RiHeartLine className='favorite' onClick={ () => toggleFavorite(ImgId)}/>}
             
             
             <img src={ImgUrl} onMouseEnter={onMouseEnterHandler}  onMouseLeave={onMouseLeaveHandler}/>

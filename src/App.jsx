@@ -16,6 +16,34 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   
+ 
+  const toggleFavorite = (SelectedImgId) => {
+
+    console.log(allPhotos, "when photo was not clicked")
+
+    const updatedPhotos = allPhotos.map(photo => {
+
+      if (photo.id === SelectedImgId) {
+
+        const updatedPhoto = {
+          ...photo,
+          isFavorite: !photo.isFavorite
+        };
+
+        return updatedPhoto;
+        
+      } else {
+        return photo
+      }
+    })
+
+    
+    setPhotos(updatedPhotos)
+    console.log(updatedPhotos, "updated photos")
+    console.log(`Toggled favorite for photo with id ${SelectedImgId}`)
+  }
+  
+
   const getAllPhotos = async () => {
     
     try {
@@ -46,7 +74,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <ContextProvider value={{allPhotos, error, isLoading}}>
+        <ContextProvider value={{allPhotos, error, isLoading, toggleFavorite}}>
           <Header />
           <Router />
         </ContextProvider>
