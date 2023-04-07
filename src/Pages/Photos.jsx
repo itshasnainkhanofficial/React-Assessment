@@ -18,7 +18,7 @@ const Photos = () => {
             allPhotos.map(({ id, url, isFavorite }) => (
               
               <li key={id}>
-                <Image  ImgId={id} className={"Hasnain"} ImgData={{id: id, url, isFavorite }}/>
+                <Image  ImgId={id} className={"Hasnain"} ImgData={{id: id, url, isFavorite }}/> {/* rendering array of items*/}
               </li>
             ))}
         </ul>

@@ -19,14 +19,12 @@ function App() {
     setCartItems((prev) => [...prev, item]);
   };
 
-  useEffect(() => {
-    console.log(cartItems, "all cart items");
-  }, [cartItems]);
+  // useEffect(() => { // to show the console of add to cart item
+  //   console.log(cartItems, "all cart items");
+  // }, [cartItems]);
 
   const toggleFavorite = (SelectedImgId) => {
-
     // toggle fovorite
-    console.log(allPhotos, "when photo was not clicked");
     const updatedPhotos = allPhotos.map((photo) => {
       if (photo.id === SelectedImgId) {
         const updatedPhoto = {
@@ -41,10 +39,7 @@ function App() {
     });
 
     setPhotos(updatedPhotos);
-    console.log(updatedPhotos, "updated photos");
-    console.log(`Toggled favorite for photo with id ${SelectedImgId}`);
   };
-
 
   // getting all posts from API
   const getAllPhotos = async () => {
@@ -63,7 +58,6 @@ function App() {
     }
   };
 
-  
   useEffect(() => {
     getAllPhotos();
   }, []);
@@ -72,7 +66,15 @@ function App() {
     <>
       <BrowserRouter>
         <ContextProvider
-          value={{ allPhotos, error, isLoading, toggleFavorite, cartItems, addToCart, setCartItems}}
+          value={{
+            allPhotos,
+            error,
+            isLoading,
+            toggleFavorite,
+            cartItems,
+            addToCart,
+            setCartItems,
+          }}
         >
           <Header />
           <Router />
