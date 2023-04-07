@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../state/Context";
 import styles from "./styles/cart.module.css";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const Cart = () => {
   const { addToCart, cartItems, setCartItems } = useContext(Context);
-
+  const [isOrder, setiIsOrder] = useState(false)
   const clickHandler = (data) => {
     const isInCart = cartItems.find((item) => item.id === data.id);
     if (isInCart) {
@@ -15,7 +15,21 @@ const Cart = () => {
     }
   };
 
+// useEffect(() => {
+//   setiIsOrder()
+ 
+// }, [isOrder])
 
+  const orderHandler = () => {
+    setiIsOrder(true)
+
+    setTimeout(() => {
+      setCartItems([])
+      setiIsOrder(false)
+      console.log("order placed")
+    }, 2000);
+
+  }
 
   return (
     <div className={styles.container}>
@@ -31,13 +45,16 @@ const Cart = () => {
           </div>
         ))
       ) : (
-        <div>No cart item found</div>
+        <h1>No item found</h1>
       )}
 
       {cartItems.length > 0 ? (
-        <p className={styles.total}>
+        <div className={styles.total}>
+          <p >
           Total Price: ${Math.round(cartItems.length * 5.99)}
         </p>
+        <button className={styles.Cartbtn} onClick={orderHandler}>{isOrder ? "Ordering..." : "Place Order"}</button>
+        </div>
       ) : null}
     </div>
   );

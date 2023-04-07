@@ -10,9 +10,12 @@
 
 .container .total{
     position: fixed;
+    align-items: center;
+    display: flex;
     color: white;
+    justify-content: space-between;
     bottom: 0px;
-    padding: 1rem;
+    padding: 1rem 0rem;
     background-color: #131921;
     width: 100%;
 }
@@ -39,3 +42,16 @@
     bottom: 30px;
   }
   
+
+  .Cartbtn {
+    background-color: antiquewhite;
+    color: #131921;
+    padding: 1rem 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .container h1{
+    font-size: 24px;
+    text-align: center;
+    padding: 1rem;
+  }

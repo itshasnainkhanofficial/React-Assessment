@@ -56,7 +56,6 @@ const Image = ({ className, ImgData }) => {
       </div>
 
       <div onClick={() => clickHandler(ImgData)}>
-        {/* {inCart ? <RiShoppingCartFill /> : <RiAddCircleLine />} */}
         {inCart ? (
           <RiShoppingCartFill />
         ) : hovered ? (
