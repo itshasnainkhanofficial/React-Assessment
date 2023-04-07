@@ -197,3 +197,30 @@ use the following:
 *<number>.toLocaleString("en-US", {style: "currency", currency: "USD"})’
 
 https://developer.mozilla.org/enUS/docs/Web/JavaScript/Reference/Global_Objects/Number/toLocaleString
+
+
+# Module 15
+
+Let our user place their order!
+
+Clicking the "Place Order” button should:
+
+1. Change the text to "Ordering..."
+
+2. Timeout for 3 seconds (to simulate an order being placed)
+3. Log "Order placed!" to the console
+
+4. Empty out the cart
+
+
+# Module 16
+
+1. Only render the "Place Order” button if there are items in the cart
+2. Change the trash icon to a filled-in trash icon when hovering over it
+Filled trash icon to use when hovering:
+
+<i className="ri-delete-bin-fill"></i>
+
+Empty trash icon to use when NOT hovering:
+
+<j className="ri-delete-bin-line"></i>
