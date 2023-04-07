@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   RiAddCircleLine,
   RiHeartFill,
@@ -10,26 +10,35 @@ import { Context } from "../state/Context";
 import PropTypes from "prop-types";
 
 const Image = ({ className, ImgData }) => {
+  const [inCart, setInCart] = useState(false);
+  const { toggleFavorite, addToCart, cartItems, setCartItems } = useContext(Context);
   const [hovered, setHovered] = useState(false);
 
-  const { toggleFavorite } = useContext(Context);
-
-  const { setCartltems, cartltems } = useContext(Context);
 
   const onMouseEnterHandler = () => {
-    if (!ImgData.isFavorite) {
-      setHovered(true);
-    }
+    setHovered(true);
   };
 
   const onMouseLeaveHandler = () => {
     setHovered(false);
   };
 
-  const clickHandler = (data) => {
-    cartltems.push(data);
+  useEffect(() => {
+    const isInCart = cartItems.find((item) => item.id === ImgData.id);
+    if (isInCart) {
+      setInCart(true);
+    }
+  }, [cartItems]);
 
-    console.log(cartltems);
+  const clickHandler = (data) => {
+    const isInCart = cartItems.find((item) => item.id === data.id);
+    if (isInCart) {
+      setInCart(false);
+      setCartItems((prev) => prev.filter((item) => item.id !== data.id));
+    } else {
+      setInCart(true);
+      addToCart(data);
+    }
   };
 
   return (
@@ -39,12 +48,19 @@ const Image = ({ className, ImgData }) => {
       onMouseLeave={onMouseLeaveHandler}
     >
       <div onClick={() => toggleFavorite(ImgData.id)}>
-        {ImgData.isFavorite ? ( <RiHeartFill /> ) : (<RiHeartLine /> )}
+        {ImgData.isFavorite ? (
+          <RiHeartFill />
+        ) : hovered ? (
+          <RiHeartLine />
+        ) : null}
       </div>
 
-      <div>
-        {hovered ? (
-          <RiAddCircleLine onClick={() => clickHandler(ImgData)} />
+      <div onClick={() => clickHandler(ImgData)}>
+        {/* {inCart ? <RiShoppingCartFill /> : <RiAddCircleLine />} */}
+        {inCart ? (
+          <RiShoppingCartFill />
+        ) : hovered ? (
+          <RiAddCircleLine />
         ) : null}
       </div>
 

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/Fi";
+import { RiShoppingCartLine, RiShoppingCartFill } from "react-icons/ri";
 import styles from './styles/header.module.css'
+import { Context } from "../state/Context";
 
 
 const Header = () => {
-
+  const { cartItems} = useContext(Context);
 
   return (
     <div className={styles.container}>
@@ -13,7 +14,7 @@ const Header = () => {
       <Link to="/">Pic Some</Link>
 
       <Link to="/cart">
-        <FiShoppingCart />
+        {cartItems.length > 0 ? <RiShoppingCartFill className="ri-fw ri-2x"/> : <RiShoppingCartLine className="ri-fw ri-2x"/>}
       </Link>
     </div>
   );

@@ -13,11 +13,19 @@ function App() {
   const [allPhotos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  let cartltems = [];
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (item) => {
+    setCartItems((prev) => [...prev, item]);
+  };
+
+  useEffect(() => {
+    console.log(cartItems, "all cart items");
+  }, [cartItems]);
 
   const toggleFavorite = (SelectedImgId) => {
 
-    // toggle fovorite login
+    // toggle fovorite
     console.log(allPhotos, "when photo was not clicked");
     const updatedPhotos = allPhotos.map((photo) => {
       if (photo.id === SelectedImgId) {
@@ -55,6 +63,7 @@ function App() {
     }
   };
 
+  
   useEffect(() => {
     getAllPhotos();
   }, []);
@@ -63,7 +72,7 @@ function App() {
     <>
       <BrowserRouter>
         <ContextProvider
-          value={{ allPhotos, error, isLoading, toggleFavorite, cartltems }}
+          value={{ allPhotos, error, isLoading, toggleFavorite, cartItems, addToCart, setCartItems}}
         >
           <Header />
           <Router />
