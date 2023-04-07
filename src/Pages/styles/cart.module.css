@@ -1,0 +1,41 @@
+.container img{
+    height: 200px;
+    margin: 1rem;
+}
+
+
+.container p {
+    text-align: center;
+}
+
+.container .total{
+    position: fixed;
+    color: white;
+    bottom: 0px;
+    padding: 1rem;
+    background-color: #131921;
+    width: 100%;
+}
+
+.itemContainer {
+    position: relative;
+  }
+  
+  .itemContainer svg {
+    transform: scale(2);
+  }
+  
+  .itemContainer div {
+    position: absolute;
+  }
+  
+  .itemContainer div:nth-child(1) {
+    left: 30px;
+    top: 30px;
+  }
+  
+  .itemContainer div:nth-child(2) {
+    left: 30px;
+    bottom: 30px;
+  }
+  
